@@ -1,0 +1,110 @@
+//York (Yuyue) Hu 2/9/2015 "Quadsolver/circle collision calculator"
+
+#include<iostream>
+#include<cmath>
+#include<windows.h>
+using namespace std;
+//global variables (vector dot products)
+char choice;
+double a, b, c, h1, k1, r1, h2, k2, r2;
+int input, input1;
+
+	
+
+//Choices
+	int main()
+	{
+Start:
+system("cls");
+cout<<"a. Quadratic formula calculator"<< endl;
+cout<<"b. Circle collision calculator"<<endl;
+cout<<"c. Quit"<<endl;
+cout<< "Please choose one of the tasks:\n";
+cin>>choice;
+
+//Case a; quadratic formula calculating
+switch (choice)
+{
+case 'a':
+	//input for quadratics
+quadratic:
+	system("cls");
+	cout<<"Thank you for trusting this program to calculate your quadratic formula!\n\n";
+	cout<<"Please enter the equation's 'a' value:\n";
+	cin>>a;
+	cout<<"Please enter the equation's 'b' value:\n";
+	cin>>b;
+	cout<<"Please enter the equation's 'c' value:\n";
+	cin>>c;
+	//output for quadratics
+	if (b*b-4*a*c<0)
+	{
+	cout<<"No real solutions were found!!\n";
+	goto options;
+	}
+	if (b*b-4*a*c==0)
+	{
+	cout<<"One real solution found: "<<(((-b)+(sqrt(b*b-4*a*c)))/(2*a))<<"\n";
+	goto options;
+	}
+	if (b*b-4*a*c>0)
+	cout<<"Two solutions found: "<<(((-b)+(sqrt(b*b-4*a*c)))/(2*a))<<" & "<<(((-b)-(sqrt(b*b-4*a*c)))/(2*a))<<"\n";
+	//After answer is displayed, request if user wants to do anothe rcalculation, if that's not the case, the program returns to the menu screen
+	options:
+	system ("pause");
+	system("cls");
+	cout<<"Do you wish to try calculating another quadratic equation? (1=yes 0=no)\n";
+	cin>>input;
+	if (input==1)
+		goto quadratic;
+	else
+		goto Start;
+
+case 'b':
+circle:
+	//input for circle collision
+	system("cls");
+	cout<<"Welcome to the circle collision calculator program!\n\n";
+	cout<<"Please enter circle center 1's x value:\n";
+	cin>>h1;
+	cout<<"Please enter circle center 1's y value\n";
+	cin>>k1;
+	cout<<"Please enter circle center 1's radius value:\n";
+	cin>>r1;
+	cout<<"Please enter circle center 2's x value:\n";
+	cin>>h2;
+	cout<<"Please enter circle center 2's y value:\n";
+	cin>>k2;
+	cout<<"Please enter circle center 2's radius value:\n";
+	cin>>r2;
+	//output for circle collision
+	cout<<"The sum of both circle's Radii is: "<<(r1+r2)<<"\n";
+	cout<<"The distance between the circle centers is: "<<(sqrt((h2-h1)*(h2-h1)+(k2-k1)*(k2-k1)))<<"\n";
+	if ((sqrt((h2-h1)*(h2-h1)+(k2-k1)*(k2-k1)))<=(r1+r2))
+	{
+	cout<<"The circles collide!\n";
+	goto options1;
+	}
+	else
+	cout<<"The circles don't collide!\n";
+	//After answer is displayed, request if user wants to do anothe rcalculation, if that's not the case, the program returns to the menu screen
+options1:
+	system("pause");
+	system("cls");
+	cout<<"Do you wish to calculate the collision of another pair of circles? (1=yes 0=no)\n";
+	cin>>input1;
+	if (input1==1)
+		goto circle;
+	else
+		goto Start;
+
+case 'c':
+return 0;
+break;
+default:
+cout<<"Try Again\n";
+goto Start;
+break;
+}
+goto Start;
+	}
